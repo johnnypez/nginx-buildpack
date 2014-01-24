@@ -32,9 +32,11 @@ done
 	#Take the command passed to this bin and start it.
 	#E.g. bin/start-nginx bundle exec unicorn -c config/unicorn.rb
         COMMAND=${@:$n}
-	echo "buildpack=nginx at=start-app cmd=$COMMAND"
-	$COMMAND
-	echo 'app' >$psmgr
+        if [ ! -z $COMMAND ]; then
+	  echo "buildpack=nginx at=start-app cmd=$COMMAND"
+	  $COMMAND
+	  echo 'app' >$psmgr
+	fi
 ) &
 
 if [[ -z "$FORCE" ]]
