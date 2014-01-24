@@ -28,18 +28,18 @@ done
 ) &
 
 #Start App Server
-(
-	#Take the command passed to this bin and start it.
-	#E.g. bin/start-nginx bundle exec unicorn -c config/unicorn.rb
+# (
+# 	#Take the command passed to this bin and start it.
+# 	#E.g. bin/start-nginx bundle exec unicorn -c config/unicorn.rb
 	
-	echo 'buildpack=nginx at=start-app-server'
-        COMMAND=${@:$n}
-        if [ ! -z "$COMMAND" ]; then
-	  echo "buildpack=nginx at=start-app cmd=$COMMAND"
-	  $COMMAND
-	  echo 'app' >$psmgr
-	fi
-) &
+# 	echo 'buildpack=nginx at=start-app-server'
+#         COMMAND=${@:$n}
+#         if [ ! -z "$COMMAND" ]; then
+# 	  echo "buildpack=nginx at=start-app cmd=$COMMAND"
+# 	  $COMMAND
+# 	  echo 'app' >$psmgr
+# 	fi
+# ) &
 
 if [[ -z "$FORCE" ]]
 then
