@@ -19,10 +19,10 @@ done
 #Start log redirection.
 (
 	#Initialize log directory.
+	echo 'buildpack=nginx at=logs-initialized'
 	mkdir -p logs/nginx
 	touch logs/nginx/access.log logs/nginx/error.log logs/error.log
 	#Redirect NGINX logs to stdout.
-	echo 'buildpack=nginx at=logs-initialized'
 	tail -qF -n 0 logs/nginx/*.log
 	echo 'logs' >$psmgr
 ) &
@@ -44,12 +44,12 @@ done
 if [[ -z "$FORCE" ]]
 then
 	FILE="/tmp/app-initialized"
-
+	echo 'buildpack=nginx at=app-initialization'
 	#We block on app-initialized so that when NGINX binds to $PORT
 	#are app is ready for traffic.
 	while [[ ! -f "$FILE" ]]
 	do
-		echo 'buildpack=nginx at=app-initialization'
+		echo 'buildpack=nginx at=app-initialization-waiting'
 		sleep 1
 	done
 	echo 'buildpack=nginx at=app-initialized'
